@@ -33,5 +33,5 @@ $ cat ~/.stack
 nextflow  python  R  gatk  samtools  bcftools  plink2  saige  rvtests  hla-hd  slurm
 
 $ git config user.email
-zxjs90408@gmail.com
+tie.zhao@csml.org
 </pre>
