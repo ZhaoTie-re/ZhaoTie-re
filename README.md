@@ -9,8 +9,9 @@
 workflow {
     CALL(crams)                                      // gVCF calling, joint genotyping, VQSR
     PARETOGT(CALL.out, array_calls)                  // genotype QC thresholds
-    ANNOTATE(PARETOGT.out)                           // snpEff, ANNOVAR
-    HLA_TYPING(crams)                                // HLA-HD on extracted reads
+    QC(PARETOGT.out)                                 // sample, variant, kinship, rare-variant
+    ANNOTATE(QC.out)                                 // snpEff, ANNOVAR
+    HLA_TYPING(crams)                                // HLA-HD on extracted reads, typing QC
     POPGMM(pca_scores, reference_panel)              // ancestry-matched cohorts
     ASSOC(ANNOTATE.out, HLA_TYPING.out, POPGMM.out)  // GWAS, gene tests, HLA
     DISEASELENS(params.disease)                      // what is already known
