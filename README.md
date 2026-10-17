@@ -30,9 +30,6 @@ $ ls ~/src
 <a href="https://github.com/ZhaoTie-re/cteph_agp3k.v6">cteph_agp3k.v6</a>/  WGS case-control study: calling checks, QC, HLA, GWAS, gene tests
 <a href="https://github.com/ZhaoTie-re/soma_qc">soma_qc</a>/         SomaScan proteomics QC
 
-$ ls ~/papers
-<a href="https://doi.org/10.1101/2025.11.20.25340712">nagahama_pqtl</a>/   plasma proteome genomic atlas, 1,823 Japanese (medRxiv 2025, co-author)
-
 $ cat ~/.stack
 nextflow  python  R  gatk  samtools  bcftools  plink2  saige  rvtests  hla-hd  slurm
 
