@@ -31,10 +31,6 @@ $ ls ~/src
 <a href="https://github.com/ZhaoTie-re/cteph_agp3k.v6">cteph_agp3k.v6</a>/  WGS case-control study: calling checks, QC, HLA, GWAS, gene tests
 <a href="https://github.com/ZhaoTie-re/soma_qc">soma_qc</a>/         SomaScan proteomics QC
 
-$ ls ~/collab
-lab_gatk/        GATK joint calling for the lab's WGS data, VQSR training
-plasma_pqtl/     cis- and trans-pQTL mapping of the plasma proteome
-
 $ cat ~/.stack
 nextflow  python  R  gatk  samtools  bcftools  plink2  saige  rvtests  hla-hd  slurm
 
