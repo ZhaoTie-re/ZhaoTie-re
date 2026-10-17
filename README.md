@@ -1,22 +1,24 @@
-## Zhao Tie
+### Zhao Tie
 
+Statistical genetics on whole-genome sequencing data.\
 PhD student, Graduate School of Medicine, Kyoto University.
 
-I work on statistical genetics with whole-genome sequencing data, from genotype calls to association results. I write the analyses as reproducible pipelines for HPC clusters.
+```nextflow
+workflow {
+    PARETOGT(wgs_calls, array_calls)            // genotype QC thresholds
+    POPGMM(pca_scores, reference_panel)         // ancestry-matched cohorts
+    ASSOC(wgs_calls, PARETOGT.out, POPGMM.out)  // common, rare, HLA
+    DISEASELENS(params.disease)                 // what is already known
+}
+```
 
-### Software
+[ParetoGT](https://github.com/ZhaoTie-re/ParetoGT) sets DP, GQ and allele-fraction cutoffs for WGS genotypes at the knee of the Pareto front of concordance against miss rate, with array genotypes as truth.
 
-| Step | Repository | What it does |
-|---|---|---|
-| Genotype QC | [ParetoGT](https://github.com/ZhaoTie-re/ParetoGT) | Chooses WGS genotype QC thresholds that balance accuracy against data loss, calibrated against array genotypes. |
-| Ancestry | [PopGMM](https://github.com/ZhaoTie-re/PopGMM) | Probabilistic ancestry with PCA and Gaussian mixture models, and ancestry-matched case–control cohorts. |
-| Evidence review | [DiseaseLens](https://github.com/ZhaoTie-re/DiseaseLens) | Dated, traceable knowledge graphs of a disease's genetics and related conditions. |
+[PopGMM](https://github.com/ZhaoTie-re/PopGMM) fits a Gaussian mixture in the PCA space of a reference panel, gives every sample a posterior ancestry, and cuts nested, ancestry-matched case–control sets.
 
-### Analyses
+[DiseaseLens](https://github.com/ZhaoTie-re/DiseaseLens) keeps dated snapshots of what is known about a disease's genetics and related conditions, from Open Targets, PubMed and Europe PMC.
 
-- [cteph_agp3k.v6](https://github.com/ZhaoTie-re/cteph_agp3k.v6): a whole-genome sequencing case–control study. It covers quality control, principal components, common-variant GWAS, rare-variant gene tests and HLA association.
-- [soma_qc](https://github.com/ZhaoTie-re/soma_qc): quality control of SomaScan proteomics data.
+[cteph_agp3k.v6](https://github.com/ZhaoTie-re/cteph_agp3k.v6) is the WGS case–control study they were built for. [soma_qc](https://github.com/ZhaoTie-re/soma_qc) is QC for SomaScan proteomics.
 
-**Tools:** Nextflow, Python, R, PLINK 2, SAIGE, REGENIE, SLURM.
-
-**Contact:** zxjs90408@gmail.com
+Nextflow, Python, R, PLINK 2, SAIGE, REGENIE, SLURM\
+zxjs90408@gmail.com
