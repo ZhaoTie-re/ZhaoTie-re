@@ -12,14 +12,14 @@ workflow {
     QC(PARETOGT.out)                                 // sample, variant, kinship, rare-variant
     ANNOTATE(QC.out)                                 // snpEff, ANNOVAR
     HLA_TYPING(crams)                                // HLA-HD on extracted reads, typing QC
-    POPGMM(pca_scores, reference_panel)              // ancestry-matched cohorts
+    POPGMM(QC.out, reference_panel)                  // projected PCs, ancestry-matched cohorts
     ASSOC(ANNOTATE.out, HLA_TYPING.out, POPGMM.out)  // GWAS, gene tests, HLA
     DISEASELENS(params.disease)                      // what is already known
 }
 
 workflow PROTEOMICS {
     SOMA_QC(adat_files)                              // SomaScan QC
-    PQTL(protein_levels, genotypes)                  // cis- and trans-pQTL
+    PQTL(SOMA_QC.out, genotypes)                     // cis- and trans-pQTL
 }
 ```
 
@@ -28,7 +28,7 @@ $ ls ~/src
 <a href="https://github.com/ZhaoTie-re/ParetoGT">ParetoGT</a>/        genotype QC: DP, GQ, AF cutoffs at the knee of concordance vs miss rate
 <a href="https://github.com/ZhaoTie-re/PopGMM">PopGMM</a>/          GMM in reference PCA space: posterior ancestry, nested matched cohorts
 <a href="https://github.com/ZhaoTie-re/DiseaseLens">DiseaseLens</a>/     dated snapshots of a disease's genetics and related conditions
-<a href="https://github.com/ZhaoTie-re/cteph_agp3k.v6">cteph_agp3k.v6</a>/  WGS case-control study: calling checks, QC, HLA, GWAS, gene tests
+<a href="https://github.com/ZhaoTie-re/cteph_agp3k.v6">cteph_agp3k.v6</a>/  WGS case-control study: QC, HLA typing, GWAS, gene tests
 <a href="https://github.com/ZhaoTie-re/soma_qc">soma_qc</a>/         SomaScan proteomics QC
 
 $ cat ~/.stack
