@@ -7,7 +7,7 @@
  */
 
 workflow {
-    CALL(crams)                                      // gVCF calling, joint genotyping
+    CALL(crams)                                      // gVCF calling, joint genotyping, VQSR
     PARETOGT(CALL.out, array_calls)                  // genotype QC thresholds
     ANNOTATE(PARETOGT.out)                           // snpEff, ANNOVAR
     HLA_TYPING(crams)                                // HLA-HD on extracted reads
@@ -18,6 +18,7 @@ workflow {
 
 workflow PROTEOMICS {
     SOMA_QC(adat_files)                              // SomaScan QC
+    PQTL(protein_levels, genotypes)                  // cis- and trans-pQTL
 }
 ```
 
@@ -28,6 +29,9 @@ $ ls ~/src
 <a href="https://github.com/ZhaoTie-re/DiseaseLens">DiseaseLens</a>/     dated snapshots of a disease's genetics and related conditions
 <a href="https://github.com/ZhaoTie-re/cteph_agp3k.v6">cteph_agp3k.v6</a>/  WGS case-control study: calling checks, QC, HLA, GWAS, gene tests
 <a href="https://github.com/ZhaoTie-re/soma_qc">soma_qc</a>/         SomaScan proteomics QC
+
+$ ls ~/papers
+<a href="https://doi.org/10.1101/2025.11.20.25340712">nagahama_pqtl</a>/   plasma proteome genomic atlas, 1,823 Japanese (medRxiv 2025, co-author)
 
 $ cat ~/.stack
 nextflow  python  R  gatk  samtools  bcftools  plink2  saige  rvtests  hla-hd  slurm
